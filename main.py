@@ -1,7 +1,9 @@
+import logging
 import os
 from dotenv import load_dotenv
 from bot import Bot
 from suggestion_service import SuggestionService
+logging.basicConfig(level=logging.INFO)
 load_dotenv()
 
 suggestion_service = SuggestionService(os.environ['FIREBASE_CONF_PATH'], os.environ['DATABASE_URL'])
