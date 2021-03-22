@@ -12,7 +12,8 @@ class SuggestionService():
     def addSuggestion(self, streamer, author, game):
         value = {
             "game": game,
-            "author": author
+            "author": author,
+            "status": "SUBMITED"
         }
         logging.info("User %s add the suggestion (%s), for the streamer %s", author, game, streamer)
         ref = db.reference("/")
