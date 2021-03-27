@@ -7,7 +7,7 @@ class Bot(commands.Bot):
 
     def __init__(self, irc_token, client_id, nick, prefix, initial_channels, suggestion_service):
         super().__init__(irc_token=irc_token, client_id=client_id, nick=nick, prefix=prefix,
-                         initial_channels=[initial_channels])
+                         initial_channels=initial_channels.split(','))
         self.suggestion_service = suggestion_service
 
     def run(self):
