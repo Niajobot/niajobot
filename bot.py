@@ -28,13 +28,13 @@ class Bot(commands.Bot):
     @commands.command(name='suggestion')
     async def suggestion(self, ctx):
         command = ctx.message.raw_data.split('!suggestion ')
+        steamer = ctx.channel.name
         if len(command) > 1:
             game_suggestion = command[1]
             author = ctx.message.author.name
-            steamer = ctx.channel.name
             self.suggestion_service.addSuggestion(steamer, author, game_suggestion)
             await ctx.send('Merci {0}, ta suggestion de {1} a bien été prise en compte'.format(ctx.message.author.name,
                                                                                                game_suggestion))
         else:
             await ctx.send(
-                'Pour faire une suggestion ajouter un jeu après !suggestion (par exemple !suggestion mario) et retrouvez la liste des suggestions sur ce lien https://stream-2549c.web.app/')
+                'Pour faire une suggestion ajouter un jeu après !suggestion (par exemple !suggestion mario) et retrouvez la liste des suggestions sur ce lien https://stream-2549c.web.app/' + steamer)
