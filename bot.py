@@ -37,4 +37,4 @@ class Bot(commands.Bot):
                                                                                                game_suggestion))
         else:
             await ctx.send(
-                'Pour faire une suggestion ajouter un jeu après !suggestion (par exemple !suggestion mario) et retrouvez la liste des suggestions sur ce lien https://stream-2549c.web.app/' + steamer)
+                'Pour faire une suggestion ajouter un jeu après !suggestion (par exemple !suggestion mario) et retrouvez la liste des suggestions sur ce lien https://niajobot.live/' + steamer)
