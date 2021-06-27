@@ -5,10 +5,11 @@ from twitchio.ext import commands
 
 class Bot(commands.Bot):
 
-    def __init__(self, irc_token, client_id, nick, prefix, initial_channels, suggestion_service):
+    def __init__(self, irc_token, client_id, nick, prefix, initial_channels, suggestion_service, discord_service):
         super().__init__(irc_token=irc_token, client_id=client_id, nick=nick, prefix=prefix,
                          initial_channels=initial_channels.split(','))
         self.suggestion_service = suggestion_service
+        self.discord_service = discord_service
 
     def run(self):
         logging.info('Bot is running')
@@ -21,10 +22,6 @@ class Bot(commands.Bot):
         #    return
         await self.handle_commands(ctx)
 
-    @commands.command(name='test')
-    async def test(self, ctx):
-        await ctx.send('test passed!')
-
     @commands.command(name='suggestion')
     async def suggestion(self, ctx):
         command = ctx.message.raw_data.split('!suggestion ')
@@ -33,6 +30,7 @@ class Bot(commands.Bot):
             game_suggestion = command[1]
             author = ctx.message.author.name
             self.suggestion_service.addSuggestion(steamer, author, game_suggestion)
+            self.discord_service.postMessage(steamer)
             await ctx.send('Merci {0}, ta suggestion de {1} a bien été prise en compte'.format(ctx.message.author.name,
                                                                                                game_suggestion))
         else:
