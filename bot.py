@@ -39,7 +39,7 @@ class Bot(commands.Bot):
                 'Pour faire une suggestion ajouter un jeu après !suggestion (par exemple !suggestion mario) et retrouvez la liste des suggestions sur ce lien https://niajobot.live/' + steamer)
 
     @commands.command(name='suggestion_noel')
-    async def suggestion(self, ctx):
+    async def suggestion_noel(self, ctx):
         command = ctx.message.raw_data.split('!suggestion_noel ')
         steamer = ctx.channel.name
         if len(command) > 1:
